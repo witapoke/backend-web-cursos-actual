@@ -2,7 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const mongoose = require('mongoose')
-const CourseModel=require("./schemas/CourseSchema")
+const CourseModel = require('./schemas/CourseSchema')
+const PORT = 3000
 
 app.use(express.json())
 app.use(cors())
@@ -13,8 +14,10 @@ const connectDB = () => {
       'mongodb+srv://ignaciomanganaro22:Reformednacho90@expresssession.dkahp5l.mongodb.net/?retryWrites=true&w=majority&appName=ExpressSession'
     )
     .then(() => {
-      app.listen('3000', () =>
-        console.log('App listening to port 3000.DB CONNECTED SUCCESFULLY')
+      app.listen(PORT || 4000, () =>
+        console.log(
+          'App listening to port ' + PORT + ' .DB CONNECTED SUCCESFULLY'
+        )
       )
     })
     .catch((e) => console.log(e))
