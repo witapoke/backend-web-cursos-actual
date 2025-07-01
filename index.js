@@ -4,9 +4,20 @@ const app = express()
 const mongoose = require('mongoose')
 const CourseModel = require('./schemas/CourseSchema')
 const PORT = 3000
+const session = require('express-session')
+const passport = require('passport')
 
 app.use(express.json())
 app.use(cors())
+app.use(
+  session({
+    secret: 'clavesecreta',
+    resave: true,
+    saveUninitialized: true
+  })
+)
+app.use(passport.initialize())
+app.use(passport.session())
 
 const connectDB = () => {
   mongoose
